@@ -15,6 +15,13 @@
           <th>Email</th>
         </tr>
       </thead>
+      <tbody>
+        <tr ng-repeat="contact in contactlist">
+          <td>{{contact.name}}</td>
+          <td>{{contact.number}}</td>
+          <td>{{contact.email}}</td>
+        </tr>
+      </tbody>
     </table>
   </div>
 
