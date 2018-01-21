@@ -21,5 +21,19 @@ app.post('/contactlist',function(req,res){
     res.json(docs);
   });
 });
+app.delete('/contactlist/:id',function(req,res){
+  console.log("Deleting record"+req.body)
+  var id = req.params.id;
+  db.contactlist.remove({_id: mongojs.ObjectId(id)}, function(err,doc){
+    res.json(doc);
+  });
+});
+app.get('/contactlist/:id',function (req,res){
+  console.log(req.params.id);
+  db.contactlist.findOne({_id:mongojs.ObjectId(req.params.id)}, function(err,docs){
+    console.log(docs);
+    res.json(docs);
+  });
+});
 app.listen(3000);
 console.log("Server running on port 3000");
