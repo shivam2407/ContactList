@@ -25,6 +25,18 @@ refresh();
       $scope.contact = response.data;
     });
   };
+
+  $scope.update=function(){
+    console.log();
+    $http.put('/contactlist/' + $scope.contact._id, $scope.contact).then(function(response){
+      console.log(response.data);
+      $scope.contactlist = response.data;
+      refresh();
+    });
+  };
+  $scope.deselect=function(){
+    $scope.contact={};
+  };
   $scope.addContact = function(){
     console.log($scope.contact);
     $http.post('/contactlist',$scope.contact).then(function(response){

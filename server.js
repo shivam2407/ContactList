@@ -35,5 +35,14 @@ app.get('/contactlist/:id',function (req,res){
     res.json(docs);
   });
 });
+app.put('/contactlist/:id',function(req,res){
+  var id = req.params.id;
+  console.log("Inside put"+req.body);
+  db.contactlist.findAndModify({query: {_id:mongojs.ObjectId(id)},
+    update: {$set: {name: req.body.name, number:req.body.number, email:req.body.email}},
+    new: true}, function (err,doc){
+      res.json(doc);
+    });
+});
 app.listen(3000);
 console.log("Server running on port 3000");
